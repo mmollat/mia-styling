@@ -5,17 +5,18 @@ performance-focused Tesla wheel fitments.
 
 The site is intentionally positioned as an interest check instead of a full
 ecommerce storefront. It presents the MPW idea, target fitments, concept specs,
-first-run process, and a simple interest CTA.
+first-run process, limited-run positioning, and a mailto-based interest form.
 
 ## Included
 
 - Premium MPW landing page
 - Tesla-focused wheel fitment positioning
-- First-run interest CTA
-- Fitment target cards
+- First-run interest form
+- Limited-run concept panel
+- Exact fitment cards for the current setup
 - Concept specification section
+- Real MPW logo and Tesla/wheel photography
 - Legacy route redirects from the previous sandbox site
-- Generated hero image for the MPW concept
 
 ## Tech Stack
 
@@ -37,4 +38,5 @@ Then open `http://localhost:3000`.
 
 - This is a concept page for validating interest before production decisions.
 - Final wheel construction, offsets, finishes, pricing, and availability are not locked.
+- Interest emails currently go to `mark.mollat@gmail.com` until an official MPW inbox is ready.
 - The old Ibarra Custom Rods content has been removed from active pages.

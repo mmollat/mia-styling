@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+const contactEmail = "mark.mollat@gmail.com";
+
 const fitments = [
   ["Front Wheel", "20x9 +26", "245/35 front tire"],
   ["Rear Wheel", "20x10.5 +38", "285/30 rear tire"],
@@ -17,6 +19,13 @@ const process = [
   ["01", "Prove The Look", "Use the current car and wheel package as the visual benchmark."],
   ["02", "Collect Demand", "Build a short list before committing to production volume."],
   ["03", "Lock The Run", "Finalize specs, finish, pricing, and quantity around real interest."],
+];
+
+const runDetails = [
+  ["Target Run", "25 sets"],
+  ["Launch Finish", "Satin black"],
+  ["Current Spec", "20-inch staggered"],
+  ["Status", "Interest check"],
 ];
 
 const gallery = [
@@ -202,9 +211,28 @@ export default function Home() {
       </section>
 
       <section id="first-run" className="section processSection">
-        <div className="sectionHeader">
-          <p className="eyebrow">First Run</p>
-          <h2>Small enough to stay sharp.</h2>
+        <div className="firstRunIntro">
+          <div>
+            <p className="eyebrow">First Run</p>
+            <h2>Small enough to stay sharp.</h2>
+          </div>
+
+          <div className="runCard">
+            <span>MPW-01</span>
+            <strong>Limited first-run concept</strong>
+            <p>
+              Early interest will decide whether this moves into a real batch,
+              what finish launches first, and how many sets make sense.
+            </p>
+            <div className="runStats">
+              {runDetails.map(([label, value]) => (
+                <div key={label}>
+                  <span>{label}</span>
+                  <strong>{value}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="processGrid">
@@ -219,21 +247,73 @@ export default function Home() {
       </section>
 
       <section id="interest" className="interest">
-        <div>
+        <div className="interestCopy">
           <p className="eyebrow">Interest Check</p>
           <h2>Would you put MPW on your car?</h2>
           <p>
-            If this becomes real, early interest will shape the first fitments,
-            finishes, and production quantity.
+            Send a quick note with your car and preferred setup. For now, this
+            goes straight to Mark while the official MPW inbox is getting set up.
           </p>
+          <a
+            href={`mailto:${contactEmail}?subject=MPW%20First%20Run%20Interest`}
+            className="ghostBtn"
+          >
+            Email Mark Directly
+          </a>
         </div>
 
-        <a
-          href="mailto:info@mollatperformancewheel.com?subject=MPW%20First%20Run%20Interest"
-          className="primaryBtn"
+        <form
+          className="interestForm"
+          action={`mailto:${contactEmail}?subject=MPW%20First%20Run%20Interest`}
+          method="post"
+          encType="text/plain"
         >
-          Register Interest
-        </a>
+          <label>
+            Name
+            <input name="Name" type="text" placeholder="Your name" />
+          </label>
+
+          <label>
+            Email
+            <input name="Email" type="email" placeholder="you@email.com" />
+          </label>
+
+          <label>
+            Car
+            <select name="Car" defaultValue="">
+              <option value="" disabled>
+                Select your Tesla
+              </option>
+              <option>Model 3</option>
+              <option>Model 3 Performance</option>
+              <option>Model Y</option>
+              <option>Other Tesla</option>
+            </select>
+          </label>
+
+          <label>
+            Interested setup
+            <select name="Interested setup" defaultValue="MPW-01 staggered 20-inch">
+              <option>MPW-01 staggered 20-inch</option>
+              <option>Square daily setup</option>
+              <option>Model Y fitment</option>
+              <option>Just want updates</option>
+            </select>
+          </label>
+
+          <label className="fullField">
+            Notes
+            <textarea
+              name="Notes"
+              rows={4}
+              placeholder="Current wheels, desired finish, brake setup, or anything else useful."
+            />
+          </label>
+
+          <button type="submit" className="primaryBtn">
+            Send Interest
+          </button>
+        </form>
       </section>
     </main>
   );
