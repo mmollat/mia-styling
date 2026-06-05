@@ -10,6 +10,7 @@
   --red: #e23737;
   --red-dark: #8f1d1d;
   --metal: #c7c9cc;
+  --warm: #d9b77c;
 }
 
 * {
@@ -37,11 +38,16 @@ a {
   text-decoration: none;
 }
 
+[id] {
+  scroll-margin-top: 110px;
+}
+
 .site {
   min-height: 100vh;
   overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(226, 55, 55, 0.09), transparent 460px),
+    radial-gradient(circle at 78% 6%, rgba(217, 183, 124, 0.12), transparent 340px),
+    linear-gradient(180deg, rgba(226, 55, 55, 0.08), transparent 540px),
     var(--bg);
 }
 
@@ -72,12 +78,13 @@ a {
   width: 48px;
   height: 48px;
   place-items: center;
-  border: 1px solid rgba(226, 55, 55, 0.5);
-  background: linear-gradient(135deg, #23252b, #09090b);
+  border: 1px solid rgba(217, 183, 124, 0.6);
+  background: linear-gradient(135deg, #2c2a25, #09090b);
   color: white;
   font-size: 15px;
   font-weight: 900;
   letter-spacing: 0.08em;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05), 0 18px 40px rgba(0, 0, 0, 0.32);
 }
 
 .brandText {
@@ -133,33 +140,33 @@ a {
 .hero {
   position: relative;
   display: grid;
-  min-height: 790px;
+  min-height: 840px;
   align-items: center;
   padding: 150px clamp(20px, 6vw, 86px) 90px;
 }
 
 .heroImage {
   object-fit: cover;
-  object-position: center;
+  object-position: center 56%;
 }
 
 .heroOverlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, #050506 0%, rgba(5, 5, 6, 0.9) 28%, rgba(5, 5, 6, 0.34) 72%, rgba(5, 5, 6, 0.7) 100%),
-    linear-gradient(180deg, rgba(5, 5, 6, 0.2), #050506 100%);
+    linear-gradient(90deg, #050506 0%, rgba(5, 5, 6, 0.9) 31%, rgba(5, 5, 6, 0.34) 72%, rgba(5, 5, 6, 0.82) 100%),
+    linear-gradient(180deg, rgba(5, 5, 6, 0.1), rgba(5, 5, 6, 0.18) 42%, #050506 100%);
 }
 
 .heroContent {
   position: relative;
   z-index: 2;
-  max-width: 760px;
+  max-width: 820px;
 }
 
 .eyebrow {
   margin: 0 0 18px;
-  color: #ff6464;
+  color: var(--warm);
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.28em;
@@ -174,13 +181,14 @@ p {
 }
 
 .hero h1 {
-  max-width: 780px;
+  max-width: 880px;
   margin-bottom: 24px;
-  font-size: clamp(46px, 8vw, 104px);
+  font-size: clamp(48px, 8.4vw, 116px);
   font-weight: 900;
   letter-spacing: 0;
-  line-height: 0.94;
+  line-height: 0.9;
   text-transform: uppercase;
+  text-wrap: balance;
 }
 
 .hero p:not(.eyebrow) {
@@ -211,7 +219,7 @@ p {
 }
 
 .primaryBtn {
-  background: var(--red);
+  background: linear-gradient(135deg, #ff4d4d, var(--red-dark));
   color: white;
   box-shadow: 0 14px 35px rgba(226, 55, 55, 0.28);
 }
@@ -219,14 +227,51 @@ p {
 .ghostBtn {
   border: 1px solid var(--line);
   color: white;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.heroSpec {
+  position: absolute;
+  right: clamp(20px, 6vw, 86px);
+  bottom: 88px;
+  z-index: 2;
+  max-width: 330px;
+  border: 1px solid rgba(217, 183, 124, 0.26);
+  background: rgba(7, 8, 10, 0.72);
+  padding: 24px;
+  backdrop-filter: blur(18px);
+}
+
+.heroSpec span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--warm);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.heroSpec strong {
+  display: block;
+  font-size: 24px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.heroSpec p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .signalBand {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-block: 1px solid var(--line);
-  background: #0c0d10;
+  background: linear-gradient(90deg, #0c0d10, #14120f, #0c0d10);
 }
 
 .signalBand div {
@@ -248,7 +293,7 @@ p {
 }
 
 .section {
-  padding: 92px clamp(20px, 6vw, 86px);
+  padding: 104px clamp(20px, 6vw, 86px);
 }
 
 .split,
@@ -281,6 +326,65 @@ p {
   line-height: 1.7;
 }
 
+.featureStrip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
+  min-height: 680px;
+  border-block: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(217, 183, 124, 0.09), rgba(226, 55, 55, 0.08)),
+    #08090b;
+}
+
+.featureImage {
+  position: relative;
+  min-height: 680px;
+  overflow: hidden;
+}
+
+.featureImage img {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+}
+
+.featureCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(40px, 6vw, 76px);
+}
+
+.featureCopy h2 {
+  max-width: 620px;
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.featureCopy p:not(.eyebrow) {
+  max-width: 560px;
+  color: var(--soft);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.microStats {
+  display: grid;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.microStats span {
+  border-left: 2px solid var(--red);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  padding: 8px 0 8px 14px;
+  text-transform: uppercase;
+}
+
 .sectionHeader {
   margin-bottom: 36px;
 }
@@ -296,7 +400,9 @@ p {
 .specPanel,
 .specList div {
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.024)),
+    #0b0c0f;
 }
 
 .fitmentCard {
@@ -306,7 +412,7 @@ p {
 
 .fitmentCard span,
 .specList span {
-  color: #ff6464;
+  color: var(--warm);
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.2em;
@@ -328,8 +434,60 @@ p {
   line-height: 1.55;
 }
 
+.gallerySection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, minmax(320px, 1fr));
+  gap: 18px;
+  padding: 0 clamp(20px, 6vw, 86px) 104px;
+}
+
+.gallerySection figure {
+  position: relative;
+  min-height: 320px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0b0c0f;
+}
+
+.gallerySection figure img {
+  object-fit: cover;
+  transition: transform 700ms ease;
+}
+
+.gallerySection figure:hover img {
+  transform: scale(1.035);
+}
+
+.galleryLarge {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.gallerySection figure:last-child {
+  grid-column: span 2;
+}
+
+.gallerySection figcaption {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 2;
+  background: rgba(5, 5, 6, 0.72);
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  padding: 10px 12px;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+}
+
 .specSection {
-  background: linear-gradient(135deg, rgba(226, 55, 55, 0.08), rgba(255, 255, 255, 0.025));
+  background:
+    linear-gradient(135deg, rgba(226, 55, 55, 0.08), rgba(217, 183, 124, 0.06)),
+    #08090b;
   border-block: 1px solid var(--line);
 }
 
@@ -384,7 +542,7 @@ p {
   margin: 0 clamp(20px, 6vw, 86px) 72px;
   border: 1px solid rgba(226, 55, 55, 0.36);
   background:
-    linear-gradient(135deg, rgba(226, 55, 55, 0.18), rgba(255, 255, 255, 0.04)),
+    linear-gradient(135deg, rgba(226, 55, 55, 0.2), rgba(217, 183, 124, 0.1)),
     var(--panel);
   padding: clamp(30px, 5vw, 56px);
 }
@@ -421,8 +579,31 @@ p {
   }
 
   .split,
-  .specSection {
+  .specSection,
+  .featureStrip {
     grid-template-columns: 1fr;
+  }
+
+  .featureImage {
+    min-height: 520px;
+  }
+
+  .featureCopy {
+    padding-top: 54px;
+  }
+
+  .gallerySection {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+
+  .galleryLarge {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .gallerySection figure:last-child {
+    grid-column: auto;
   }
 }
 
@@ -458,14 +639,26 @@ p {
   }
 
   .hero {
-    min-height: 720px;
+    min-height: 760px;
     padding-top: 170px;
+  }
+
+  .heroImage {
+    object-position: 63% center;
   }
 
   .heroOverlay {
     background:
-      linear-gradient(90deg, rgba(5, 5, 6, 0.94), rgba(5, 5, 6, 0.52)),
+      linear-gradient(90deg, rgba(5, 5, 6, 0.96), rgba(5, 5, 6, 0.58)),
       linear-gradient(180deg, rgba(5, 5, 6, 0.15), #050506 100%);
+  }
+
+  .heroSpec {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: 36px;
+    max-width: none;
   }
 
   .heroActions,
@@ -482,8 +675,18 @@ p {
   .signalBand,
   .fitmentGrid,
   .specList,
-  .processGrid {
+  .processGrid,
+  .gallerySection {
     grid-template-columns: 1fr;
+  }
+
+  .section,
+  .gallerySection {
+    padding-bottom: 72px;
+  }
+
+  .featureImage {
+    min-height: 430px;
   }
 
   .signalBand div {
@@ -498,5 +701,9 @@ p {
   .processCard,
   .specList div {
     min-height: auto;
+  }
+
+  .gallerySection figure {
+    min-height: 300px;
   }
 }
