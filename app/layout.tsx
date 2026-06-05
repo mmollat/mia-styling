@@ -2,8 +2,9 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 
 export const metadata = {
-  title: "Ibarra Custom Rods",
-  description: "Custom fishing rods built by hand.",
+  title: "Mollat Performance Wheel",
+  description:
+    "A first-run performance wheel concept focused on Tesla fitments, stance, and real-world drivability.",
 };
 
 export default function RootLayout({
