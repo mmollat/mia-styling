@@ -1,16 +1,16 @@
 import Image from "next/image";
 
 const fitments = [
-  ["Model 3", "19x9.5 +30", "Street-ready flush stance"],
-  ["Model 3 Performance", "20x9.5 +32", "Big-brake friendly direction"],
-  ["Model Y", "20x10 +35", "Balanced SUV presence"],
+  ["Front Wheel", "20x9 +26", "245/35 front tire"],
+  ["Rear Wheel", "20x10.5 +38", "285/30 rear tire"],
+  ["Setup", "Staggered", "Model 3 performance stance"],
 ];
 
 const specs = [
   ["Construction", "Forged or flow-formed first-run target"],
   ["Finish", "Satin black launch concept with graphite options"],
-  ["Fitment", "Tesla-focused offsets with real clearance in mind"],
-  ["Intent", "Strength, stance, and daily use before hype"],
+  ["Wheel Fitment", "20x9 +26 front and 20x10.5 +38 rear"],
+  ["Tire Package", "245/35 front and 285/30 rear"],
 ];
 
 const process = [
@@ -79,9 +79,16 @@ export default function Home() {
         </div>
 
         <div className="heroSpec">
+          <Image
+            src="/images/mpw-logo-white.png"
+            alt="MPW"
+            width={260}
+            height={76}
+            className="heroSpecLogo"
+          />
           <span>First concept</span>
-          <strong>Satin black multi-spoke</strong>
-          <p>Low visual weight. Real Tesla stance. Built around owner feedback.</p>
+          <strong>20x9 front / 20x10.5 rear</strong>
+          <p>+26 front offset, +38 rear offset, wrapped in 245/35 and 285/30 tires.</p>
         </div>
       </section>
 
@@ -144,8 +151,8 @@ export default function Home() {
 
       <section id="fitments" className="section">
         <div className="sectionHeader">
-          <p className="eyebrow">Fitment Targets</p>
-          <h2>Focused around the Teslas people actually modify.</h2>
+          <p className="eyebrow">Exact Fitment</p>
+          <h2>The setup shown on this car.</h2>
         </div>
 
         <div className="fitmentGrid">

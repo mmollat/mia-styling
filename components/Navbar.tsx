@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 const navItems = [
@@ -13,7 +14,15 @@ export default function Navbar() {
   return (
     <header className="nav">
       <Link href="/" className="brand" aria-label="Mollat Performance Wheel home">
-        <span className="brandMark">MPW</span>
+        <span className="brandMark">
+          <Image
+            src="/images/mpw-logo-white.png"
+            alt=""
+            width={172}
+            height={50}
+            priority
+          />
+        </span>
         <span className="brandText">
           <strong>Mollat</strong>
           <small>Performance Wheel</small>
