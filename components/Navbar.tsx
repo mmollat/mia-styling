@@ -1,45 +1,37 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-
-const navItems = [
-  ["Fitments", "#fitments"],
-  ["Wheel", "#wheel"],
-  ["First Run", "#first-run"],
-  ["Interest", "#interest"],
-];
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="nav">
-      <Link href="/" className="brand" aria-label="Mollat Performance Wheel home">
-        <span className="brandMark">
-          <Image
-            src="/images/mpw-logo-white.png"
-            alt=""
-            width={172}
-            height={50}
-            priority
-          />
-        </span>
-        <span className="brandText">
-          <strong>Mollat</strong>
-          <small>Performance Wheel</small>
-        </span>
-      </Link>
-
+    <header className={`nav ${scrolled ? "scrolled" : ""} ${menuOpen ? "menuOpen" : ""}`}>
+      <a className="brand" href="#top" onClick={() => setMenuOpen(false)}>
+        <i aria-hidden="true" /> APEX HOUSE
+      </a>
       <nav aria-label="Primary navigation">
-        {navItems.map(([label, href]) => (
-          <Link key={href} href={href}>
-            {label}
-          </Link>
-        ))}
+        <a href="#house" onClick={() => setMenuOpen(false)}>The house</a>
+        <a href="#storage" onClick={() => setMenuOpen(false)}>Vehicle care</a>
+        <a href="#memberships" onClick={() => setMenuOpen(false)}>Memberships</a>
       </nav>
-
-      <Link href="#interest" className="outlineBtn">
-        Join The List
-      </Link>
+      <a className="navCta" href="#memberships">Explore membership</a>
+      <button
+        className="menuToggle"
+        aria-label="Toggle navigation"
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        <span /><span />
+      </button>
     </header>
   );
 }

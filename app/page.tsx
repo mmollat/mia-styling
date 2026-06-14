@@ -1,320 +1,296 @@
+"use client";
+
 import Image from "next/image";
+import { FormEvent, useRef, useState } from "react";
 
-const contactEmail = "mark.mollat@gmail.com";
-
-const fitments = [
-  ["Front Wheel", "20x9 +26", "245/35 front tire"],
-  ["Rear Wheel", "20x10.5 +38", "285/30 rear tire"],
-  ["Setup", "Staggered", "Model 3 performance stance"],
-];
-
-const specs = [
-  ["Construction", "Forged or flow-formed first-run target"],
-  ["Finish", "Satin black launch concept with graphite options"],
-  ["Wheel Fitment", "20x9 +26 front and 20x10.5 +38 rear"],
-  ["Tire Package", "245/35 front and 285/30 rear"],
-];
-
-const process = [
-  ["01", "Prove The Look", "Use the current car and wheel package as the visual benchmark."],
-  ["02", "Collect Demand", "Build a short list before committing to production volume."],
-  ["03", "Lock The Run", "Finalize specs, finish, pricing, and quantity around real interest."],
-];
-
-const runDetails = [
-  ["Target Run", "25 sets"],
-  ["Launch Finish", "Satin black"],
-  ["Current Spec", "20-inch staggered"],
-  ["Status", "Interest check"],
-];
-
-const gallery = [
+const experiences = [
   {
-    src: "/images/mpw-model3-garage-front.jpg",
-    alt: "White Tesla Model 3 with black performance wheels from the front",
-    label: "Garage fitment study",
+    number: "01",
+    label: "Connect",
+    title: "The members lounge",
+    copy: "Great coffee, comfortable corners, fast Wi-Fi, and room for conversations that turn into drives, deals, and friendships.",
+    className: "loungeCard",
   },
   {
-    src: "/images/mpw-wheel-closeup.jpg",
-    alt: "Close-up of black MPW wheel with red Tesla brake caliper",
-    label: "Wheel detail",
+    number: "02",
+    label: "Create",
+    title: "Your private workshop",
+    copy: "Reserve a professional lift, use the house tools, and get hands-on without sacrificing your home garage or driveway.",
+    className: "workshopCard",
   },
   {
-    src: "/images/mpw-model3-street-rear.jpg",
-    alt: "Rear three-quarter view of white Tesla Model 3 on black wheels",
-    label: "Street stance",
+    number: "03",
+    label: "Belong",
+    title: "Events worth showing up for",
+    copy: "Curated drives, technical workshops, guest speakers, watch parties, and low-key evenings at the house.",
+    className: "eventsCard",
+  },
+];
+
+const careServices = [
+  ["Battery care", "Smart tender monitoring and charging included with every residency."],
+  ["Exercise program", "Scheduled starts, temperature cycling, and tire repositioning."],
+  ["Drive-ready service", "Request your car and find it staged, checked, and ready to leave."],
+  ["Concierge coordination", "Detailing, transport, inspection, and service appointments managed."],
+];
+
+const tiers = [
+  {
+    name: "Silver",
+    tagline: "For the social enthusiast",
+    monthly: 125,
+    annual: 113,
+    cta: "Join Silver",
+    features: [
+      "Full members lounge access",
+      "Two workshop reservations / month",
+      "House tool library",
+      "Member events and group drives",
+      "Guest passes each quarter",
+    ],
   },
   {
-    src: "/images/mpw-wheel-unboxed.jpg",
-    alt: "Satin black performance wheel sitting in packaging",
-    label: "Unboxed sample",
+    name: "Gold",
+    tagline: "For the active collector",
+    monthly: 225,
+    annual: 203,
+    cta: "Join Gold",
+    featured: true,
+    features: [
+      "Everything in Silver",
+      "Four workshop reservations / month",
+      "Preferred storage rate",
+      "Priority booking and staging",
+      "One complimentary wash / month",
+    ],
+  },
+  {
+    name: "Platinum",
+    tagline: "For the committed custodian",
+    monthly: 425,
+    annual: 383,
+    cta: "Join Platinum",
+    dark: true,
+    features: [
+      "Everything in Gold",
+      "Unlimited workshop reservations",
+      "Best available storage rate",
+      "Monthly hand detail for one stored car",
+      "Drive-ready concierge service",
+      "After-hours access and private locker",
+    ],
   },
 ];
 
 export default function Home() {
+  const [period, setPeriod] = useState<"monthly" | "annual">("monthly");
+  const [submitted, setSubmitted] = useState(false);
+  const [selectedTier, setSelectedTier] = useState("I'm still exploring");
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
+  function openTour(tier?: string) {
+    if (tier) setSelectedTier(tier);
+    setSubmitted(false);
+    dialogRef.current?.showModal();
+  }
+
+  function submitTour(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSubmitted(true);
+  }
+
   return (
-    <main className="site">
-      <section className="hero">
+    <main>
+      <section className="hero" id="top">
         <Image
-          src="/images/mpw-model3-garage-side.jpg"
-          alt="White Tesla Model 3 with black performance wheels in a finished garage"
+          src="/images/apex-house-hero.png"
+          alt="Modern performance cars inside the Apex House members lounge and workshop"
           fill
           priority
+          loading="eager"
           className="heroImage"
+          sizes="100vw"
         />
-        <div className="heroOverlay" />
-
+        <div className="heroShade" />
         <div className="heroContent">
-          <p className="eyebrow">Mollat Performance Wheel</p>
-          <h1>
-            Tesla fitment,
-            <br />
-            finished right.
-          </h1>
-
-          <p>
-            A premium first-run concept for Model 3 and Model Y owners who want
-            the car to look complete without giving up daily drivability.
+          <p className="eyebrow">Private automotive club <span>Est. 2026</span></p>
+          <h1>More than a garage.<br /><em>Your place to belong.</em></h1>
+          <p className="heroCopy">
+            A private home for remarkable cars and the people who appreciate them.
+            Lounge, connect, wrench, and drive.
           </p>
-
           <div className="heroActions">
-            <a href="#interest" className="primaryBtn">
-              Join The First Run
-            </a>
-            <a href="#wheel" className="ghostBtn">
-              View Concept
-            </a>
+            <button className="button buttonLight" onClick={() => openTour()}>
+              Become a founding member
+            </button>
+            <a className="textLink" href="#experience">Discover the house <span>↘</span></a>
           </div>
         </div>
-
-        <div className="heroSpec">
-          <Image
-            src="/images/mpw-logo-white.png"
-            alt="MPW"
-            width={260}
-            height={76}
-            className="heroSpecLogo"
-          />
-          <span>First concept</span>
-          <strong>20x9 front / 20x10.5 rear</strong>
-          <p>+26 front offset, +38 rear offset, wrapped in 245/35 and 285/30 tires.</p>
-        </div>
-      </section>
-
-      <section className="signalBand" aria-label="MPW highlights">
-        {[
-          "Tesla-first sizing",
-          "Real-world test car",
-          "Manufacturer relationship",
-          "Limited first run",
-        ].map((item) => (
-          <div key={item}>{item}</div>
-        ))}
-      </section>
-
-      <section id="wheel" className="section split">
-        <div>
-          <p className="eyebrow">The Idea</p>
-          <h2>A wheel page with real metal behind it.</h2>
-        </div>
-
-        <div className="copyStack">
-          <p>
-            MPW starts with a real Tesla, real fitment photos, and a wheel shape
-            that already works on the car. The goal is not to look like every
-            other aftermarket catalog. It is to make the car feel sharper,
-            cleaner, and more intentional.
-          </p>
-          <p>
-            This is still an interest page before it becomes a store. If enough
-            owners want it, MPW can move from concept to a small, carefully
-            specified first production run.
-          </p>
-        </div>
-      </section>
-
-      <section className="featureStrip">
-        <div className="featureImage">
-          <Image
-            src="/images/mpw-wheel-closeup.jpg"
-            alt="MPW wheel close-up with red Tesla brake caliper"
-            fill
-            sizes="(max-width: 900px) 100vw, 48vw"
-          />
-        </div>
-        <div className="featureCopy">
-          <p className="eyebrow">First Look</p>
-          <h2>Black spokes, red calipers, no apology.</h2>
-          <p>
-            The current wheel has the right visual ingredients: thin split
-            spokes, deep contrast, a motorsport feel, and enough openness to
-            show the brake package instead of hiding it.
-          </p>
-          <div className="microStats">
-            <span>5-lug Tesla pattern</span>
-            <span>Satin black direction</span>
-            <span>Performance brake presence</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="fitments" className="section">
-        <div className="sectionHeader">
-          <p className="eyebrow">Exact Fitment</p>
-          <h2>The setup shown on this car.</h2>
-        </div>
-
-        <div className="fitmentGrid">
-          {fitments.map(([model, size, note]) => (
-            <article key={`${model}-${size}`} className="fitmentCard">
-              <span>{model}</span>
-              <strong>{size}</strong>
-              <p>{note}</p>
-            </article>
+        <div className="heroMeta">
+          {["Members lounge", "Collector storage", "Private workshop"].map((item, index) => (
+            <div key={item}><span>0{index + 1}</span><p>{item}</p></div>
           ))}
         </div>
       </section>
 
-      <section className="gallerySection" aria-label="MPW concept gallery">
-        {gallery.map((item, index) => (
-          <figure key={item.src} className={index === 0 ? "galleryLarge" : ""}>
-            <Image
-              src={item.src}
-              alt={item.alt}
-              fill
-              sizes={index === 0 ? "(max-width: 900px) 100vw, 60vw" : "(max-width: 900px) 100vw, 36vw"}
-            />
-            <figcaption>{item.label}</figcaption>
-          </figure>
-        ))}
-      </section>
-
-      <section className="section specSection">
-        <div className="specPanel">
-          <p className="eyebrow">Concept Direction</p>
-          <h2>Premium, but still practical.</h2>
-          <p>
-            The first run should feel special, but it still needs to clear real
-            brakes, hold up to real roads, and make sense for owners who drive
-            their cars every day.
-          </p>
-        </div>
-
-        <div className="specList">
-          {specs.map(([label, value]) => (
-            <div key={label}>
-              <span>{label}</span>
-              <p>{value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="first-run" className="section processSection">
-        <div className="firstRunIntro">
-          <div>
-            <p className="eyebrow">First Run</p>
-            <h2>Small enough to stay sharp.</h2>
-          </div>
-
-          <div className="runCard">
-            <span>MPW-01</span>
-            <strong>Limited first-run concept</strong>
+      <section className="intro section" id="house">
+        <p className="sectionIndex">01 / The idea</p>
+        <div className="introGrid">
+          <h2>Built around the drive.<br /><em>Designed around you.</em></h2>
+          <div className="introBody">
             <p>
-              Early interest will decide whether this moves into a real batch,
-              what finish launches first, and how many sets make sense.
+              Apex House is where car culture meets genuine hospitality. Come for
+              coffee, stay for the conversation, and know your vehicle is cared for
+              like one of our own.
             </p>
-            <div className="runStats">
-              {runDetails.map(([label, value]) => (
-                <div key={label}>
-                  <span>{label}</span>
-                  <strong>{value}</strong>
-                </div>
-              ))}
-            </div>
+            <p>
+              No velvet ropes. No showroom pressure. Just a considered space for
+              enthusiasts, builders, collectors, and the naturally curious.
+            </p>
           </div>
         </div>
+      </section>
 
-        <div className="processGrid">
-          {process.map(([num, title, text]) => (
-            <article key={num} className="processCard">
-              <span>{num}</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
+      <section className="featureGrid" id="experience">
+        {experiences.map((item) => (
+          <article className={`featureCard ${item.className}`} key={item.number}>
+            <div className="cardNumber">{item.number}</div>
+            <div>
+              <p className="eyebrow">{item.label}</p>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section className="storage section" id="storage">
+        <div className="storageHeading">
+          <p className="sectionIndex">02 / Vehicle residency</p>
+          <h2>Your car deserves<br /><em>more than a parking spot.</em></h2>
+        </div>
+        <div className="storageLayout">
+          <div className="storageVisual">
+            <Image
+              src="/images/apex-house-hero.png"
+              alt="A modern silver performance car in climate-controlled storage"
+              fill
+              sizes="(max-width: 900px) 100vw, 60vw"
+            />
+            <div className="temperature">
+              <span>Climate</span><strong>68°</strong><small>Monitored 24/7</small>
+            </div>
+          </div>
+          <div className="storageServices">
+            <p className="lead">
+              Secure, climate-controlled residency with attentive care and
+              on-demand access. Your vehicle stays ready for the next great road.
+            </p>
+            {careServices.map(([title, copy], index) => (
+              <div className="serviceRow" key={title}>
+                <span>0{index + 1}</span>
+                <div><h4>{title}</h4><p>{copy}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="memberships section" id="memberships">
+        <div className="membershipHeading">
+          <div>
+            <p className="sectionIndex">03 / Memberships</p>
+            <h2>Choose your<br /><em>level of access.</em></h2>
+          </div>
+          <p>
+            Memberships are intentionally limited to keep the house personal,
+            available, and worth returning to.
+          </p>
+        </div>
+
+        <div className="tierTabs">
+          <button className={period === "monthly" ? "active" : ""} onClick={() => setPeriod("monthly")}>
+            Monthly
+          </button>
+          <button className={period === "annual" ? "active" : ""} onClick={() => setPeriod("annual")}>
+            Annual <span>Save 10%</span>
+          </button>
+        </div>
+
+        <div className="tierGrid">
+          {tiers.map((tier) => (
+            <article
+              className={`tierCard ${tier.featured ? "featured" : ""} ${tier.dark ? "dark" : ""}`}
+              key={tier.name}
+            >
+              {tier.featured && <div className="popular">Most popular</div>}
+              <p className="tierName">{tier.name}</p>
+              <p className="tierFor">{tier.tagline}</p>
+              <p className="price">
+                <span>$</span><strong>{tier[period]}</strong><small>/ month</small>
+              </p>
+              <button
+                className={`button ${tier.dark ? "buttonLight" : tier.featured ? "buttonGold" : "buttonOutline"}`}
+                onClick={() => openTour(tier.name)}
+              >
+                {tier.cta}
+              </button>
+              <ul>{tier.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
             </article>
           ))}
         </div>
+        <p className="pricingNote">
+          Vehicle residency is billed separately. Founding rates shown for concept purposes.
+        </p>
       </section>
 
-      <section id="interest" className="interest">
-        <div className="interestCopy">
-          <p className="eyebrow">Interest Check</p>
-          <h2>Would you put MPW on your car?</h2>
-          <p>
-            Send a quick note with your car and preferred setup. For now, this
-            goes straight to Mark while the official MPW inbox is getting set up.
-          </p>
-          <a
-            href={`mailto:${contactEmail}?subject=MPW%20First%20Run%20Interest`}
-            className="ghostBtn"
-          >
-            Email Mark Directly
-          </a>
+      <section className="finalCta">
+        <p className="eyebrow">Founding membership</p>
+        <h2>There&apos;s a space here<br /><em>with your name on it.</em></h2>
+        <p>Be among the first to call Apex House your automotive home.</p>
+        <button className="button buttonLight" onClick={() => openTour()}>Request a private tour</button>
+      </section>
+
+      <footer>
+        <a className="brand footerBrand" href="#top"><i aria-hidden="true" /> APEX HOUSE</a>
+        <p>A private automotive club for people who never really stopped looking back at their car.</p>
+        <div className="footerLinks">
+          <a href="#house">The house</a><a href="#storage">Vehicle care</a>
+          <a href="#memberships">Memberships</a><a href="mailto:hello@apexhouse.club">Contact</a>
         </div>
+        <div className="footerBottom"><span>© 2026 Apex House</span><span>Concept website</span></div>
+      </footer>
 
-        <form
-          className="interestForm"
-          action={`mailto:${contactEmail}?subject=MPW%20First%20Run%20Interest`}
-          method="post"
-          encType="text/plain"
-        >
-          <label>
-            Name
-            <input name="Name" type="text" placeholder="Your name" />
-          </label>
-
-          <label>
-            Email
-            <input name="Email" type="email" placeholder="you@email.com" />
-          </label>
-
-          <label>
-            Car
-            <select name="Car" defaultValue="">
-              <option value="" disabled>
-                Select your Tesla
-              </option>
-              <option>Model 3</option>
-              <option>Model 3 Performance</option>
-              <option>Model Y</option>
-              <option>Other Tesla</option>
-            </select>
-          </label>
-
-          <label>
-            Interested setup
-            <select name="Interested setup" defaultValue="MPW-01 staggered 20-inch">
-              <option>MPW-01 staggered 20-inch</option>
-              <option>Square daily setup</option>
-              <option>Model Y fitment</option>
-              <option>Just want updates</option>
-            </select>
-          </label>
-
-          <label className="fullField">
-            Notes
-            <textarea
-              name="Notes"
-              rows={4}
-              placeholder="Current wheels, desired finish, brake setup, or anything else useful."
-            />
-          </label>
-
-          <button type="submit" className="primaryBtn">
-            Send Interest
-          </button>
-        </form>
-      </section>
+      <dialog className="tourModal" ref={dialogRef} onClick={(event) => {
+        if (event.target === dialogRef.current) dialogRef.current?.close();
+      }}>
+        <button className="modalClose" aria-label="Close" onClick={() => dialogRef.current?.close()}>×</button>
+        {!submitted ? (
+          <>
+            <p className="eyebrow">Come see the house</p>
+            <h2>Request a private tour</h2>
+            <p className="modalCopy">Tell us a little about yourself. We&apos;ll reach out to arrange a personal walk-through.</p>
+            <form onSubmit={submitTour}>
+              <label>Name<input name="name" type="text" placeholder="Your full name" required /></label>
+              <label>Email<input name="email" type="email" placeholder="you@example.com" required /></label>
+              <label>
+                Membership interest
+                <select value={selectedTier} onChange={(event) => setSelectedTier(event.target.value)}>
+                  <option>I&apos;m still exploring</option><option>Silver</option>
+                  <option>Gold</option><option>Platinum</option><option>Vehicle residency only</option>
+                </select>
+              </label>
+              <label>What do you drive?<input name="vehicle" type="text" placeholder="Tell us about your car(s)" /></label>
+              <button className="button buttonGold" type="submit">Send request</button>
+            </form>
+          </>
+        ) : (
+          <div className="formSuccess">
+            <span>✓</span><h3>You&apos;re on the list.</h3>
+            <p>Thanks for your interest. We&apos;ll be in touch to arrange your tour.</p>
+          </div>
+        )}
+      </dialog>
     </main>
   );
 }

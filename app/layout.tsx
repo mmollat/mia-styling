@@ -2,9 +2,9 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 
 export const metadata = {
-  title: "Mollat Performance Wheel",
+  title: "Apex House | A Private Automotive Club",
   description:
-    "A first-run performance wheel concept focused on Tesla fitments, stance, and real-world drivability.",
+    "A private automotive club offering a members lounge, collector car storage, workshop access, and concierge vehicle care.",
 };
 
 export default function RootLayout({
