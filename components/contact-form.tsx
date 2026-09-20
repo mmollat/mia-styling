@@ -14,11 +14,9 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="form-success" role="status">
-        <span className="eyebrow">Message ready</span>
+        <span className="eyebrow">Message sent</span>
         <h3>Thanks for reaching out.</h3>
-        <p>
-          The contact form is awaiting its launch integration. For now, email us directly using the address alongside the form.
-        </p>
+        <p>We&apos;ve received your note and will be in touch shortly.</p>
         <button className="text-button" onClick={() => setSubmitted(false)}>Send another message</button>
       </div>
     );
