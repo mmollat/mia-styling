@@ -149,7 +149,6 @@ h2 em, h1 em { font-weight: 400; }
 .legal-content h2 { font-size: 1.8rem; margin: 54px 0 16px; letter-spacing: -.02em; line-height: 1.2; }
 .legal-content p, .legal-content li { color: #514e48; line-height: 1.8; }
 .legal-content li + li { margin-top: 8px; }
-.placeholder-note { background: #ece4d9; border-left: 3px solid #8d7962; padding: 18px 20px; }
 
 @media (max-width: 900px) {
   .container { width: min(100% - 32px, 720px); }

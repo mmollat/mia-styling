@@ -9,7 +9,7 @@ A polished customer-facing website for a personalized men's styling service.
 - MIA Fit Card deliverable preview
 - FAQ and Instagram contact CTA
 - Privacy, terms, and refund policy routes
-- Central configuration for Instagram, operator, jurisdiction, and Stripe Payment Links
+- Central configuration for Instagram and Stripe Payment Links
 - SEO and Open Graph metadata
 
 ## Tech Stack
@@ -28,12 +28,19 @@ npm run dev
 
 Then open `http://localhost:3000`.
 
-## Launch Configuration
+## Verify the Project
 
-Before accepting orders, update `lib/site-config.ts` with:
+```bash
+npm run typecheck
+npm run build
+```
+
+## Site Configuration
+
+The live site settings are centralized in `lib/site-config.ts`, including:
 
 - The Instagram profile URL and handle
-- Business or operator name
-- Mailing address and governing jurisdiction
 - Stripe Payment Links for all four services
-- The final production domain, if it differs from the current Vercel URL
+- The production site URL
+
+The current production URL is `https://mia-mens-style.vercel.app`.
