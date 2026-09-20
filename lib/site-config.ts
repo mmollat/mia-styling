@@ -2,7 +2,9 @@ export const siteConfig = {
   name: "MIA | Men's Style",
   shortName: "MIA",
   tagline: "Personal styling, made simple.",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://project-6xium.vercel.app",
+  siteUrl:
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    "https://mia-styling-markmollat-3205s-projects.vercel.app",
   supportEmail: "support@[DOMAIN]",
   operatorName: "[LEGAL BUSINESS OR OPERATOR NAME]",
   mailingAddress: "[MAILING ADDRESS]",
