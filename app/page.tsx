@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ContactForm } from "@/components/contact-form";
 import { Header } from "@/components/header";
 import { SiteFooter } from "@/components/site-footer";
-import { serviceHref, siteConfig, type ServiceKey } from "@/lib/site-config";
+import { serviceHref, type ServiceKey } from "@/lib/site-config";
 
 const steps = [
   { number: "01", title: "Tell Mia what you need", body: "Choose your service and tell us about the occasion, your style preferences, sizing, and what you want your outfit to say about you." },
@@ -157,7 +157,6 @@ export default function HomePage() {
             <p className="section-index light">06 — Contact</p>
             <h2>Questions before<br />getting styled?</h2>
             <p>Tell us what you&apos;re dressing for or ask anything about the process. We&apos;ll help you choose the right service.</p>
-            <a className="email-link" href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail} <span aria-hidden="true">↗</span></a>
           </div>
           <ContactForm />
         </div>
