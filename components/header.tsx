@@ -4,7 +4,7 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container nav-row">
-        <Brand />
+        <Brand light />
         <nav aria-label="Primary navigation" className="main-nav">
           <a href="#how-it-works">How It Works</a>
           <a href="#services">Services</a>

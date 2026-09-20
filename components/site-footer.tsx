@@ -6,8 +6,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div>
-          <Brand light />
-          <p>Personal styling, made simple.</p>
+          <Brand light full />
         </div>
         <nav aria-label="Footer navigation" className="footer-links">
           <a href="/#services">Services</a>
