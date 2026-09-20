@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { MAX_FILES, services, serviceKeys, type ServiceType } from "@/lib/intake";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { MAX_FILES, services, type ServiceType } from "@/lib/intake";
 
 type FieldErrors = Record<string, string[]>;
 
@@ -18,16 +18,13 @@ function Select({ label, name, options, error }: { label: string; name: string; 
   return <label className="form-field"><span>{label} *</span><select name={name} required aria-invalid={Boolean(error)} defaultValue=""><option value="" disabled>Select one</option>{options.map((option) => <option key={option}>{option}</option>)}</select>{error && <small>{error}</small>}</label>;
 }
 
-export function IntakeForm() {
+export function IntakeForm({ serviceType }: { serviceType: ServiceType }) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const initial = searchParams.get("service") as ServiceType | null;
-  const [serviceType, setServiceType] = useState<ServiceType>(initial && serviceKeys.includes(initial) ? initial : "dress_me");
   const [submissionKey, setSubmissionKey] = useState(() => crypto.randomUUID());
   const [errors, setErrors] = useState<FieldErrors>({});
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
-  const service = useMemo(() => services[serviceType], [serviceType]);
+  const service = services[serviceType];
   const error = (name: string) => errors[name]?.[0];
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
@@ -35,9 +32,8 @@ export function IntakeForm() {
     setSubmitting(true); setErrors({}); setMessage("");
     const body = new FormData(event.currentTarget);
     body.set("submissionKey", submissionKey);
-    body.set("serviceType", serviceType);
     try {
-      const response = await fetch("/api/intake", { method: "POST", body });
+      const response = await fetch(`/api/intake?service=${encodeURIComponent(service.slug)}`, { method: "POST", body });
       const result = await response.json();
       if (!response.ok) {
         setErrors(result.fields ?? {}); setMessage(result.error ?? "Please try again."); setSubmitting(false); return;
@@ -52,12 +48,10 @@ export function IntakeForm() {
 
   return <form className="intake-form" onSubmit={submit} noValidate={false}>
     <section className="form-section">
-      <p className="section-index">01 — SELECT YOUR SERVICE</p>
-      <div className="service-selector">
-        {serviceKeys.map((key) => <label className={key === serviceType ? "selected" : ""} key={key}>
-          <input type="radio" name="serviceChoice" value={key} checked={key === serviceType} onChange={() => setServiceType(key)} />
-          <strong>{services[key].name}</strong><span>${services[key].price}</span><em>{services[key].short}</em>
-        </label>)}
+      <p className="section-index">01 — YOUR SERVICE</p>
+      <div className="locked-service" aria-label="Selected styling service">
+        <strong>{service.name} — ${service.price}</strong>
+        <p>{service.short}</p>
       </div>
     </section>
 

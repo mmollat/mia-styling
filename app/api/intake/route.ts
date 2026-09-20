@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { ALLOWED_FILE_TYPES, intakeSchema, MAX_FILES, MAX_FILE_SIZE, services } from "@/lib/intake";
+import { ALLOWED_FILE_TYPES, getIntakeSchema, getServiceTypeFromSlug, MAX_FILES, MAX_FILE_SIZE, services } from "@/lib/intake";
 
 export const runtime = "nodejs";
 
@@ -11,16 +11,21 @@ function safeFilename(filename: string) {
 
 export async function POST(request: Request) {
   try {
+    const serviceType = getServiceTypeFromSlug(new URL(request.url).searchParams.get("service"));
+    if (!serviceType) {
+      return NextResponse.json({ error: "We couldn't identify your styling service. Please return to the services page and choose a service." }, { status: 400 });
+    }
+
     const formData = await request.formData();
     const files = formData.getAll("wardrobePhotos").filter((item): item is File => item instanceof File && item.size > 0);
     const fields = Object.fromEntries([...formData.entries()].filter(([, value]) => typeof value === "string"));
-    const parsed = intakeSchema.safeParse(fields);
+    const parsed = getIntakeSchema(serviceType).safeParse(fields);
 
     if (!parsed.success) {
       return NextResponse.json({ error: "Please review the highlighted fields.", fields: parsed.error.flatten().fieldErrors }, { status: 400 });
     }
 
-    const service = services[parsed.data.serviceType];
+    const service = services[serviceType];
     if (service.uploads && files.length === 0) {
       return NextResponse.json({ error: "Please upload at least one clear wardrobe photo.", fields: { wardrobePhotos: ["At least one wardrobe photo is required."] } }, { status: 400 });
     }
@@ -47,7 +52,7 @@ export async function POST(request: Request) {
       uploaded.push({ storage_path: path, original_filename: file.name, file_type: file.type, file_size: file.size });
     }
 
-    const { submissionKey, fullName, email, instagramHandle, serviceType, occasion, occasionDate, ...intakeData } = parsed.data;
+    const { submissionKey, fullName, email, instagramHandle, occasion, occasionDate, ...intakeData } = parsed.data;
     const { data, error } = await supabase.rpc("mia_complete_intake", {
       p_submission_key: submissionKey,
       p_full_name: fullName,

@@ -218,6 +218,12 @@ h2 em, h1 em { font-weight: 400; }
 .service-selector > label > span { font-size: 1.2rem; }
 .service-selector em { grid-column: 1 / -1; align-self: end; color: #706b63; font-style: normal; font-size: .82rem; }
 .service-selector .selected em { color: #c5c0b6; }
+.locked-service { max-width: 720px; border: 1px solid #c8c2b8; padding: 30px; background: var(--ink); color: white; }
+.locked-service strong { display: block; font-family: Georgia, serif; font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 400; }
+.locked-service p { margin: 12px 0 0; color: #c5c0b6; }
+.invalid-service { border-top: 1px solid #aaa49a; padding: 62px 0 120px; }
+.invalid-service h2 { max-width: 760px; margin: 28px 0 18px; font-family: Georgia, serif; font-size: clamp(2.4rem, 5vw, 4.6rem); font-weight: 400; letter-spacing: -.04em; line-height: 1; }
+.invalid-service > p:not(.section-index) { max-width: 640px; margin: 0 0 32px; color: #625e56; font-size: 1.05rem; line-height: 1.7; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 28px; }
 .form-field { display: flex; flex-direction: column; gap: 8px; }
 .form-field-wide { grid-column: span 1; }
