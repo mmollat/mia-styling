@@ -1,296 +1,169 @@
-"use client";
-
 import Image from "next/image";
-import { FormEvent, useRef, useState } from "react";
+import { ContactForm } from "@/components/contact-form";
+import { Header } from "@/components/header";
+import { SiteFooter } from "@/components/site-footer";
+import { serviceHref, siteConfig, type ServiceKey } from "@/lib/site-config";
 
-const experiences = [
-  {
-    number: "01",
-    label: "Connect",
-    title: "The members lounge",
-    copy: "Great coffee, comfortable corners, fast Wi-Fi, and room for conversations that turn into drives, deals, and friendships.",
-    className: "loungeCard",
-  },
-  {
-    number: "02",
-    label: "Create",
-    title: "Your private workshop",
-    copy: "Reserve a professional lift, use the house tools, and get hands-on without sacrificing your home garage or driveway.",
-    className: "workshopCard",
-  },
-  {
-    number: "03",
-    label: "Belong",
-    title: "Events worth showing up for",
-    copy: "Curated drives, technical workshops, guest speakers, watch parties, and low-key evenings at the house.",
-    className: "eventsCard",
-  },
+const steps = [
+  { number: "01", title: "Tell Mia what you need", body: "Choose your service and tell us about the occasion, your style preferences, sizing, and what you want your outfit to say about you." },
+  { number: "02", title: "Show us your wardrobe", body: "Upload photos of the clothing, shoes, and accessories you already own. A personal photo is optional for fit and proportion guidance." },
+  { number: "03", title: "Get your fit", body: "Receive a personalized MIA Fit Card showing exactly what to wear, how to put the outfit together, and available alternatives." },
 ];
 
-const careServices = [
-  ["Battery care", "Smart tender monitoring and charging included with every residency."],
-  ["Exercise program", "Scheduled starts, temperature cycling, and tire repositioning."],
-  ["Drive-ready service", "Request your car and find it staged, checked, and ready to leave."],
-  ["Concierge coordination", "Detailing, transport, inspection, and service appointments managed."],
+const services: Array<{ key: ServiceKey; name: string; price: string; note?: string; delivery: string; features: string[] }> = [
+  { key: "dressMe", name: "Mia, Dress Me", price: "$19", delivery: "Delivered within 48 hours after complete intake is received", features: ["Styling for one occasion", "One complete outfit", "Shoes and accessories", "One alternate option", "One revision"] },
+  { key: "buildMyFits", name: "Build My Fits", price: "$49", note: "Best for building a few looks", delivery: "Delivered within 48 hours after complete intake is received", features: ["Three complete outfits", "Shoes and accessories", "Alternate styling options", "Closet gap analysis", "Up to 3 shopping recommendations", "One revision"] },
+  { key: "closetReset", name: "Closet Reset", price: "$99", delivery: "Delivered within 3–4 days after complete intake is received", features: ["Closet review", "Seven complete outfits", "Shoes and accessories", "Alternate styling options", "Wardrobe gap analysis", "Up to 7 shopping recommendations", "One revision"] },
 ];
 
-const tiers = [
-  {
-    name: "Silver",
-    tagline: "For the social enthusiast",
-    monthly: 125,
-    annual: 113,
-    cta: "Join Silver",
-    features: [
-      "Full members lounge access",
-      "Two workshop reservations / month",
-      "House tool library",
-      "Member events and group drives",
-      "Guest passes each quarter",
-    ],
-  },
-  {
-    name: "Gold",
-    tagline: "For the active collector",
-    monthly: 225,
-    annual: 203,
-    cta: "Join Gold",
-    featured: true,
-    features: [
-      "Everything in Silver",
-      "Four workshop reservations / month",
-      "Preferred storage rate",
-      "Priority booking and staging",
-      "One complimentary wash / month",
-    ],
-  },
-  {
-    name: "Platinum",
-    tagline: "For the committed custodian",
-    monthly: 425,
-    annual: 383,
-    cta: "Join Platinum",
-    dark: true,
-    features: [
-      "Everything in Gold",
-      "Unlimited workshop reservations",
-      "Best available storage rate",
-      "Monthly hand detail for one stored car",
-      "Drive-ready concierge service",
-      "After-hours access and private locker",
-    ],
-  },
+const faqs = [
+  ["When does my turnaround time begin?", "Turnaround begins after we receive your completed style intake and usable wardrobe photos."],
+  ["Do I need to buy new clothes?", "No. Our approach starts with what you already own. Shopping recommendations are made only when useful."],
+  ["Do I have to send a photo of myself?", "No. Personal photos are optional. They can help when you want fit or proportion guidance."],
+  ["What counts as a revision?", "A revision is a reasonable adjustment to the original styling request, such as changing shoes, replacing a selected garment, or adjusting the style direction. Styling for an entirely different occasion requires a new order."],
+  ["Can I get a refund?", "Orders may be cancelled and refunded before styling work begins. Once styling work has started, styling fees are non-refundable. If MIA | Men's Style is unable to complete the purchased service, the applicable service fee will be refunded."],
 ];
 
-export default function Home() {
-  const [period, setPeriod] = useState<"monthly" | "annual">("monthly");
-  const [submitted, setSubmitted] = useState(false);
-  const [selectedTier, setSelectedTier] = useState("I'm still exploring");
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  function openTour(tier?: string) {
-    if (tier) setSelectedTier(tier);
-    setSubmitted(false);
-    dialogRef.current?.showModal();
-  }
-
-  function submitTour(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSubmitted(true);
-  }
-
+export default function HomePage() {
   return (
     <main>
-      <section className="hero" id="top">
-        <Image
-          src="/images/apex-house-hero.png"
-          alt="Modern performance cars inside the Apex House members lounge and workshop"
-          fill
-          priority
-          loading="eager"
-          className="heroImage"
-          sizes="100vw"
-        />
-        <div className="heroShade" />
-        <div className="heroContent">
-          <p className="eyebrow">Private automotive club <span>Est. 2026</span></p>
-          <h1>More than a garage.<br /><em>Your place to belong.</em></h1>
-          <p className="heroCopy">
-            A private home for remarkable cars and the people who appreciate them.
-            Lounge, connect, wrench, and drive.
-          </p>
-          <div className="heroActions">
-            <button className="button buttonLight" onClick={() => openTour()}>
-              Become a founding member
-            </button>
-            <a className="textLink" href="#experience">Discover the house <span>↘</span></a>
-          </div>
-        </div>
-        <div className="heroMeta">
-          {["Members lounge", "Collector storage", "Private workshop"].map((item, index) => (
-            <div key={item}><span>0{index + 1}</span><p>{item}</p></div>
-          ))}
-        </div>
-      </section>
+      <Header />
 
-      <section className="intro section" id="house">
-        <p className="sectionIndex">01 / The idea</p>
-        <div className="introGrid">
-          <h2>Built around the drive.<br /><em>Designed around you.</em></h2>
-          <div className="introBody">
-            <p>
-              Apex House is where car culture meets genuine hospitality. Come for
-              coffee, stay for the conversation, and know your vehicle is cared for
-              like one of our own.
-            </p>
-            <p>
-              No velvet ropes. No showroom pressure. Just a considered space for
-              enthusiasts, builders, collectors, and the naturally curious.
-            </p>
-          </div>
+      <section className="hero">
+        <div className="hero-image" aria-hidden="true">
+          <Image src="/mia-hero.jpg" alt="" fill priority sizes="100vw" />
         </div>
-      </section>
-
-      <section className="featureGrid" id="experience">
-        {experiences.map((item) => (
-          <article className={`featureCard ${item.className}`} key={item.number}>
-            <div className="cardNumber">{item.number}</div>
-            <div>
-              <p className="eyebrow">{item.label}</p>
-              <h3>{item.title}</h3>
-              <p>{item.copy}</p>
-            </div>
-          </article>
-        ))}
-      </section>
-
-      <section className="storage section" id="storage">
-        <div className="storageHeading">
-          <p className="sectionIndex">02 / Vehicle residency</p>
-          <h2>Your car deserves<br /><em>more than a parking spot.</em></h2>
-        </div>
-        <div className="storageLayout">
-          <div className="storageVisual">
-            <Image
-              src="/images/apex-house-hero.png"
-              alt="A modern silver performance car in climate-controlled storage"
-              fill
-              sizes="(max-width: 900px) 100vw, 60vw"
-            />
-            <div className="temperature">
-              <span>Climate</span><strong>68°</strong><small>Monitored 24/7</small>
+        <div className="hero-shade" aria-hidden="true" />
+        <div className="container hero-content">
+          <div className="hero-copy">
+            <p className="eyebrow light">MIA | Men&apos;s Style</p>
+            <p className="hero-kicker">Personal styling, made simple.</p>
+            <h1>Your personal stylist.<br />Your closet. Your style—<em>put together.</em></h1>
+            <p className="hero-support">Tell Mia where you&apos;re going, show her what you already own, and receive a personalized outfit built around your wardrobe, preferences, and occasion.</p>
+            <div className="button-row">
+              <a href="#services" className="button button-light">Get Styled <span aria-hidden="true">↗</span></a>
+              <a href="#how-it-works" className="button button-ghost">See How It Works</a>
             </div>
           </div>
-          <div className="storageServices">
-            <p className="lead">
-              Secure, climate-controlled residency with attentive care and
-              on-demand access. Your vehicle stays ready for the next great road.
-            </p>
-            {careServices.map(([title, copy], index) => (
-              <div className="serviceRow" key={title}>
-                <span>0{index + 1}</span>
-                <div><h4>{title}</h4><p>{copy}</p></div>
-              </div>
+          <p className="hero-aside">01 / A better way to get dressed</p>
+        </div>
+      </section>
+
+      <section className="intro section-pad">
+        <div className="container intro-grid">
+          <p className="section-index">01 — The approach</p>
+          <div>
+            <h2>Style starts with what&apos;s already yours.</h2>
+            <p>We style what you already own first. Shopping recommendations are made only when they can meaningfully improve or complete your wardrobe.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" className="how section-pad">
+        <div className="container">
+          <div className="section-heading">
+            <p className="section-index">02 — How it works</p>
+            <h2>From occasion to outfit<br />in three simple steps.</h2>
+          </div>
+          <div className="steps-grid">
+            {steps.map((step) => (
+              <article className="step-card" key={step.number}>
+                <span>{step.number}</span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="memberships section" id="memberships">
-        <div className="membershipHeading">
+      <section id="services" className="services section-pad">
+        <div className="container">
+          <div className="section-heading split">
+            <div>
+              <p className="section-index">03 — Services</p>
+              <h2>Choose the level of<br />styling you need.</h2>
+            </div>
+            <p>Every service is personalized to your wardrobe, preferences, sizing, and occasion. No subscription. No unnecessary shopping.</p>
+          </div>
+          <div className="pricing-grid">
+            {services.map((service) => (
+              <article className={`price-card ${service.note ? "featured" : ""}`} key={service.key}>
+                {service.note && <p className="service-note">{service.note}</p>}
+                <div className="price-head">
+                  <h3>{service.name}</h3>
+                  <p>{service.price}</p>
+                </div>
+                <ul>
+                  {service.features.map((feature) => <li key={feature}>{feature}</li>)}
+                </ul>
+                <p className="delivery">{service.delivery}</p>
+                <a href={serviceHref(service.key)} className={`button ${service.note ? "button-light" : "button-outline"}`}>
+                  Choose {service.name} <span aria-hidden="true">↗</span>
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="fit-section section-pad">
+        <div className="container fit-grid">
+          <div className="fit-copy">
+            <p className="section-index">04 — What you receive</p>
+            <h2>Your look,<br /><em>clearly laid out.</em></h2>
+            <p>Your MIA Fit Card turns the pieces in your wardrobe into a complete look—with clear guidance, thoughtful alternatives, and only the additions that truly earn a place.</p>
+            <div className="fit-stat"><strong>1</strong><span>clear, complete<br />styling plan</span></div>
+          </div>
+          <article className="fit-card">
+            <header><div><span>MIA</span> FIT</div><p>FIT—0001</p></header>
+            <div className="fit-card-body">
+              <p className="micro-label">THE FIT</p>
+              <ol className="outfit-list">
+                <li><span>01</span> Black quarter-zip</li>
+                <li><span>02</span> White tapered trousers</li>
+                <li><span>03</span> Toffee leather sneakers</li>
+                <li><span>04</span> Rose-gold watch</li>
+                <li><span>05</span> Black belt</li>
+              </ol>
+              <div className="notes-grid">
+                <div><p className="micro-label">MIA&apos;S NOTES</p><p>The clean contrast sharpens the silhouette while warm leather keeps the look relaxed and considered.</p></div>
+                <div><p className="micro-label">SWAP IT</p><p>Trade the quarter-zip for your charcoal knit polo for a softer, more casual finish.</p></div>
+              </div>
+              <div className="missing-piece"><p className="micro-label">MISSING PIECE</p><p>No purchase needed—this fit works with what you own.</p></div>
+            </div>
+            <footer>PERSONAL STYLING, MADE SIMPLE. <span>MIA / 01</span></footer>
+          </article>
+        </div>
+      </section>
+
+      <section id="faq" className="faq section-pad">
+        <div className="container faq-grid">
+          <div><p className="section-index">05 — FAQ</p><h2>Good questions.<br />Straight answers.</h2></div>
+          <div className="faq-list">
+            {faqs.map(([question, answer], index) => (
+              <details key={question} open={index === 0}>
+                <summary><span>{question}</span><span className="plus" aria-hidden="true">+</span></summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="contact section-pad">
+        <div className="container contact-grid">
           <div>
-            <p className="sectionIndex">03 / Memberships</p>
-            <h2>Choose your<br /><em>level of access.</em></h2>
+            <p className="section-index light">06 — Contact</p>
+            <h2>Questions before<br />getting styled?</h2>
+            <p>Tell us what you&apos;re dressing for or ask anything about the process. We&apos;ll help you choose the right service.</p>
+            <a className="email-link" href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail} <span aria-hidden="true">↗</span></a>
           </div>
-          <p>
-            Memberships are intentionally limited to keep the house personal,
-            available, and worth returning to.
-          </p>
+          <ContactForm />
         </div>
-
-        <div className="tierTabs">
-          <button className={period === "monthly" ? "active" : ""} onClick={() => setPeriod("monthly")}>
-            Monthly
-          </button>
-          <button className={period === "annual" ? "active" : ""} onClick={() => setPeriod("annual")}>
-            Annual <span>Save 10%</span>
-          </button>
-        </div>
-
-        <div className="tierGrid">
-          {tiers.map((tier) => (
-            <article
-              className={`tierCard ${tier.featured ? "featured" : ""} ${tier.dark ? "dark" : ""}`}
-              key={tier.name}
-            >
-              {tier.featured && <div className="popular">Most popular</div>}
-              <p className="tierName">{tier.name}</p>
-              <p className="tierFor">{tier.tagline}</p>
-              <p className="price">
-                <span>$</span><strong>{tier[period]}</strong><small>/ month</small>
-              </p>
-              <button
-                className={`button ${tier.dark ? "buttonLight" : tier.featured ? "buttonGold" : "buttonOutline"}`}
-                onClick={() => openTour(tier.name)}
-              >
-                {tier.cta}
-              </button>
-              <ul>{tier.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
-            </article>
-          ))}
-        </div>
-        <p className="pricingNote">
-          Vehicle residency is billed separately. Founding rates shown for concept purposes.
-        </p>
       </section>
 
-      <section className="finalCta">
-        <p className="eyebrow">Founding membership</p>
-        <h2>There&apos;s a space here<br /><em>with your name on it.</em></h2>
-        <p>Be among the first to call Apex House your automotive home.</p>
-        <button className="button buttonLight" onClick={() => openTour()}>Request a private tour</button>
-      </section>
-
-      <footer>
-        <a className="brand footerBrand" href="#top"><i aria-hidden="true" /> APEX HOUSE</a>
-        <p>A private automotive club for people who never really stopped looking back at their car.</p>
-        <div className="footerLinks">
-          <a href="#house">The house</a><a href="#storage">Vehicle care</a>
-          <a href="#memberships">Memberships</a><a href="mailto:hello@apexhouse.club">Contact</a>
-        </div>
-        <div className="footerBottom"><span>© 2026 Apex House</span><span>Concept website</span></div>
-      </footer>
-
-      <dialog className="tourModal" ref={dialogRef} onClick={(event) => {
-        if (event.target === dialogRef.current) dialogRef.current?.close();
-      }}>
-        <button className="modalClose" aria-label="Close" onClick={() => dialogRef.current?.close()}>×</button>
-        {!submitted ? (
-          <>
-            <p className="eyebrow">Come see the house</p>
-            <h2>Request a private tour</h2>
-            <p className="modalCopy">Tell us a little about yourself. We&apos;ll reach out to arrange a personal walk-through.</p>
-            <form onSubmit={submitTour}>
-              <label>Name<input name="name" type="text" placeholder="Your full name" required /></label>
-              <label>Email<input name="email" type="email" placeholder="you@example.com" required /></label>
-              <label>
-                Membership interest
-                <select value={selectedTier} onChange={(event) => setSelectedTier(event.target.value)}>
-                  <option>I&apos;m still exploring</option><option>Silver</option>
-                  <option>Gold</option><option>Platinum</option><option>Vehicle residency only</option>
-                </select>
-              </label>
-              <label>What do you drive?<input name="vehicle" type="text" placeholder="Tell us about your car(s)" /></label>
-              <button className="button buttonGold" type="submit">Send request</button>
-            </form>
-          </>
-        ) : (
-          <div className="formSuccess">
-            <span>✓</span><h3>You&apos;re on the list.</h3>
-            <p>Thanks for your interest. We&apos;ll be in touch to arrange your tour.</p>
-          </div>
-        )}
-      </dialog>
+      <SiteFooter />
     </main>
   );
 }

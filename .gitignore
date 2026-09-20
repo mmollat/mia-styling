@@ -1,4 +1,7 @@
-.next/
-node_modules/
+node_modules
+.next
+.vercel
 .env*.local
-next-env.d.ts
+.DS_Store
+npm-debug.log*
+.env*

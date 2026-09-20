@@ -1,23 +1,27 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
-import Navbar from "../components/Navbar";
 
-export const metadata = {
-  title: "Apex House | A Private Automotive Club",
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: {
+    default: "MIA | Men's Style — Personal Styling, Made Simple",
+    template: "%s | MIA Men's Style",
+  },
   description:
-    "A private automotive club offering a members lounge, collector car storage, workshop access, and concierge vehicle care.",
+    "Personalized men's styling built around your wardrobe, preferences, and occasion. Choose a service and receive a clear, wearable MIA Fit Card.",
+  openGraph: {
+    title: "MIA | Men's Style",
+    description: "Your personal stylist. Your closet. Your style—put together.",
+    type: "website",
+  },
+  icons: { icon: "/favicon.svg" },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>
-        <Navbar />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
