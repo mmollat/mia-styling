@@ -12,6 +12,7 @@ export const siteConfig = {
   governingJurisdiction: "[GOVERNING JURISDICTION]",
   paymentLinks: {
     dressMe: "",
+    buildMyLook: "",
     buildMyFits: "",
     closetReset: "",
   },

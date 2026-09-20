@@ -13,7 +13,7 @@ export default function RefundsPage() {
       <p>You may cancel your order for a full refund before styling work begins. Contact us as soon as possible via <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">{siteConfig.instagramHandle} on Instagram</a> with the email used for your order and your order reference.</p>
 
       <h2>After styling work begins</h2>
-      <p>Once styling work has begun, styling fees are non-refundable. Work may begin after we receive the complete style intake and usable wardrobe photos needed for your selected service.</p>
+      <p>Once styling work has begun, styling fees are non-refundable. Work may begin after we receive the complete style intake and the usable wardrobe photos or shopping details needed for your selected service.</p>
 
       <h2>If we cannot complete your service</h2>
       <p>If MIA | Men&apos;s Style is unable to complete the purchased service, we will refund the applicable service fee. We may first contact you if missing, incomplete, or unusable intake materials are preventing fulfillment.</p>

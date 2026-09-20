@@ -5,7 +5,7 @@ A polished customer-facing website for a personalized men's styling service.
 ## Included
 
 - Responsive editorial landing page
-- Three service and pricing tiers
+- Four service and pricing tiers
 - MIA Fit Card deliverable preview
 - FAQ and Instagram contact CTA
 - Privacy, terms, and refund policy routes
@@ -35,5 +35,5 @@ Before accepting orders, update `lib/site-config.ts` with:
 - The Instagram profile URL and handle
 - Business or operator name
 - Mailing address and governing jurisdiction
-- Stripe Payment Links for all three services
+- Stripe Payment Links for all four services
 - The final production domain, if it differs from the current Vercel URL

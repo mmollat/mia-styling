@@ -22,7 +22,7 @@ export default function TermsPage() {
       <p>Each listed service includes one reasonable revision to the original styling request. A revision may include changing shoes, replacing a selected garment, or adjusting the style direction within the same occasion and scope. A different occasion, substantially different request, or additional look requires a new order.</p>
 
       <h2>Shopping recommendations</h2>
-      <p>Any third-party product recommendation is optional. Availability, price, sizing, quality, delivery, returns, and product descriptions are controlled by the third-party seller. You are responsible for reviewing a seller&apos;s terms before purchasing.</p>
+      <p>MIA | Men&apos;s Style recommends clothing but does not sell the recommended items directly. Any third-party product recommendation is optional. Availability, sizing, prices, shipping, returns, quality, product descriptions, and other purchase terms are controlled by the third-party retailer and can change. You are responsible for reviewing the retailer&apos;s current terms before purchasing.</p>
 
       <h2>Delivery estimates</h2>
       <p>Published turnaround periods are good-faith estimates that begin after complete intake. We will communicate if circumstances materially affect delivery. Digital styling deliverables are sent using the contact information supplied with the order.</p>
