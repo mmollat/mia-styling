@@ -40,8 +40,7 @@ export default function TermsPage() {
       <p>The service is provided with reasonable care but without a guarantee of a particular personal, social, professional, or commercial result. To the fullest extent permitted by applicable law, the service operator is not responsible for indirect, incidental, or consequential loss arising from use of the service or optional third-party purchases. Nothing in these Terms limits liability that cannot lawfully be limited.</p>
 
       <h2>Governing terms and contact</h2>
-      <p>These Terms are governed by the laws of {siteConfig.governingJurisdiction}, without regard to conflict-of-law rules, except where consumer law requires otherwise. Contact {siteConfig.operatorName} via <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">{siteConfig.instagramHandle} on Instagram</a> or {siteConfig.mailingAddress}.</p>
-      <p className="placeholder-note"><strong>Launch note:</strong> Replace the operator, address, and jurisdiction placeholders in <code>lib/site-config.ts</code> before accepting orders.</p>
+      <p>These Terms are governed by the laws of the State of California, without regard to conflict-of-law principles, except where applicable consumer law requires otherwise. For questions regarding these Terms, contact MIA | Men&apos;s Style via <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">{siteConfig.instagramHandle} on Instagram</a>.</p>
     </LegalLayout>
   );
 }

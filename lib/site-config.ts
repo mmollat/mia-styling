@@ -7,9 +7,6 @@ export const siteConfig = {
     "https://mia-mens-style.vercel.app",
   instagramUrl: "https://www.instagram.com/meetmiaafterhours/",
   instagramHandle: "@meetmiaafterhours",
-  operatorName: "[LEGAL BUSINESS OR OPERATOR NAME]",
-  mailingAddress: "[MAILING ADDRESS]",
-  governingJurisdiction: "[GOVERNING JURISDICTION]",
   paymentLinks: {
     dressMe: "https://buy.stripe.com/eVq28k95f5si2xee0z7wA00",
     buildMyLook: "https://buy.stripe.com/00w9AM81b2g6b3K8Gf7wA01",

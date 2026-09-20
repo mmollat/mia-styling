@@ -37,8 +37,7 @@ export default function PrivacyPage() {
       <p>We may update this policy as the service changes. The effective date above identifies the current version.</p>
 
       <h2>Contact</h2>
-      <p>For privacy questions or deletion requests, contact {siteConfig.operatorName} via <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">{siteConfig.instagramHandle} on Instagram</a>.</p>
-      <p className="placeholder-note"><strong>Launch note:</strong> Replace the operator-name placeholder in <code>lib/site-config.ts</code> before accepting orders.</p>
+      <p>For privacy questions or deletion requests, contact MIA | Men&apos;s Style via <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">{siteConfig.instagramHandle} on Instagram</a>.</p>
     </LegalLayout>
   );
 }
