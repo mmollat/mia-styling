@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: "Personal styling, made simple.",
   siteUrl:
     process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://mia-styling-markmollat-3205s-projects.vercel.app",
+    "https://mia-mens-style.vercel.app",
   supportEmail: "support@[DOMAIN]",
   operatorName: "[LEGAL BUSINESS OR OPERATOR NAME]",
   mailingAddress: "[MAILING ADDRESS]",
