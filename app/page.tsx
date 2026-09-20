@@ -1,8 +1,7 @@
 import Image from "next/image";
-import { ContactForm } from "@/components/contact-form";
 import { Header } from "@/components/header";
 import { SiteFooter } from "@/components/site-footer";
-import { serviceHref, type ServiceKey } from "@/lib/site-config";
+import { serviceHref, siteConfig, type ServiceKey } from "@/lib/site-config";
 
 const steps = [
   { number: "01", title: "Tell Mia what you need", body: "Choose your service and tell us about the occasion, your style preferences, sizing, and what you want your outfit to say about you." },
@@ -156,9 +155,13 @@ export default function HomePage() {
           <div>
             <p className="section-index light">06 — Contact</p>
             <h2>Questions before<br />getting styled?</h2>
-            <p>Tell us what you&apos;re dressing for or ask anything about the process. We&apos;ll help you choose the right service.</p>
           </div>
-          <ContactForm />
+          <div className="contact-cta">
+            <p>Send Mia a message on Instagram. She&apos;ll help you figure out which styling service is right for you.</p>
+            <a className="button button-light" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
+              Message Mia on Instagram <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
       </section>
 

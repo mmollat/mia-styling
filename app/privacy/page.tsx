@@ -28,7 +28,7 @@ export default function PrivacyPage() {
       <p>We retain information for as long as reasonably needed to fulfill your order, provide support, keep necessary business records, resolve disputes, and meet applicable obligations. Retention periods can vary by the type of information and the reason it was collected.</p>
 
       <h2>Your choices</h2>
-      <p>You may ask questions about your information or request access, correction, or deletion by emailing <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>. Some information may need to be retained where required or permitted for legitimate business, legal, fraud-prevention, or recordkeeping purposes.</p>
+      <p>You may ask questions about your information or request access, correction, or deletion by messaging <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">{siteConfig.instagramHandle} on Instagram</a>. Some information may need to be retained where required or permitted for legitimate business, legal, fraud-prevention, or recordkeeping purposes.</p>
 
       <h2>Children&apos;s privacy</h2>
       <p>The service is not directed to children, and we do not knowingly seek personal information from children.</p>
@@ -37,8 +37,8 @@ export default function PrivacyPage() {
       <p>We may update this policy as the service changes. The effective date above identifies the current version.</p>
 
       <h2>Contact</h2>
-      <p>For privacy questions or deletion requests, contact {siteConfig.operatorName} at <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>.</p>
-      <p className="placeholder-note"><strong>Launch note:</strong> Replace the operator-name and support-domain placeholders in <code>lib/site-config.ts</code> before accepting orders.</p>
+      <p>For privacy questions or deletion requests, contact {siteConfig.operatorName} via <a href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">{siteConfig.instagramHandle} on Instagram</a>.</p>
+      <p className="placeholder-note"><strong>Launch note:</strong> Replace the operator-name placeholder in <code>lib/site-config.ts</code> before accepting orders.</p>
     </LegalLayout>
   );
 }

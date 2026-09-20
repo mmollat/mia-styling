@@ -122,23 +122,15 @@ h2 em, h1 em { font-weight: 400; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11vw; }
 .contact h2 { margin: 28px 0 30px; font-size: clamp(3rem, 5vw, 5rem); }
 .contact-grid > div > p:not(.section-index) { color: #bbb6ad; max-width: 470px; }
-.email-link { display: inline-flex; gap: 24px; margin-top: 38px; padding-bottom: 5px; border-bottom: 1px solid #777269; font-size: .92rem; }
-.contact-form { display: grid; gap: 24px; }
-.field { display: grid; gap: 7px; }
-.field label { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: #c4beb5; }
-.field input, .field textarea { width: 100%; color: white; background: transparent; border: 0; border-bottom: 1px solid #777269; border-radius: 0; padding: 11px 0; outline: none; }
-.field input:focus, .field textarea:focus { border-color: white; }
-.field textarea { resize: vertical; }
-.contact-form .button { margin-top: 10px; justify-self: start; background: var(--bone); color: var(--ink); cursor: pointer; }
-.form-success { border: 1px solid #67635c; padding: 42px; align-self: start; }
-.form-success h3 { font-family: Georgia, serif; font-size: 2rem; font-weight: 400; margin: 22px 0 12px; }
-.form-success p { color: #bbb6ad; }
-.text-button { background: none; color: white; border: 0; border-bottom: 1px solid white; padding: 0 0 4px; margin-top: 20px; cursor: pointer; }
+.contact-cta { align-self: center; }
+.contact-cta p { font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.55; }
+.contact-cta .button { margin-top: 34px; }
 
 .site-footer { background: var(--ink); color: white; padding: 72px 0 30px; border-top: 1px solid #42413c; }
 .footer-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 70px; padding-bottom: 70px; }
 .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 40px; font-size: .77rem; color: #c0bcb3; }
 .footer-links a:hover { color: white; }
+.instagram-link { display: inline-flex; align-items: center; gap: 8px; }
 .footer-bottom { border-top: 1px solid #3a3935; padding-top: 28px; display: flex; justify-content: space-between; color: #77746e; font-size: .63rem; letter-spacing: .12em; text-transform: uppercase; }
 
 .legal-page { min-height: 100vh; background: var(--paper); }

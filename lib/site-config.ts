@@ -5,7 +5,8 @@ export const siteConfig = {
   siteUrl:
     process.env.NEXT_PUBLIC_SITE_URL ||
     "https://mia-mens-style.vercel.app",
-  supportEmail: "support@[DOMAIN]",
+  instagramUrl: "https://www.instagram.com/meetmiaafterhours/",
+  instagramHandle: "@meetmiaafterhours",
   operatorName: "[LEGAL BUSINESS OR OPERATOR NAME]",
   mailingAddress: "[MAILING ADDRESS]",
   governingJurisdiction: "[GOVERNING JURISDICTION]",
