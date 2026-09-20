@@ -7,7 +7,7 @@ export function LegalLayout({ eyebrow, title, children }: { eyebrow: string; tit
       <header className="legal-header">
         <div className="container nav-row">
           <Brand />
-          <a href="/#contact" className="button button-small button-dark">Contact</a>
+          <Link href="/#contact" className="button button-small button-dark">Contact</Link>
         </div>
       </header>
       <main className="legal-shell">
@@ -20,3 +20,4 @@ export function LegalLayout({ eyebrow, title, children }: { eyebrow: string; tit
     </div>
   );
 }
+import Link from "next/link";

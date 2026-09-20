@@ -10,9 +10,9 @@ export function SiteFooter() {
           <Brand light full />
         </div>
         <nav aria-label="Footer navigation" className="footer-links">
-          <a href="/#services">Services</a>
-          <a href="/#how-it-works">How It Works</a>
-          <a href="/#contact">Contact</a>
+          <Link href="/#services">Services</Link>
+          <Link href="/#how-it-works">How It Works</Link>
+          <Link href="/#contact">Contact</Link>
           <a className="instagram-link" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
             <svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="1.8">
               <rect x="3" y="3" width="18" height="18" rx="5" />
