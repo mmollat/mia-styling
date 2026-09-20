@@ -11,10 +11,10 @@ export const siteConfig = {
   mailingAddress: "[MAILING ADDRESS]",
   governingJurisdiction: "[GOVERNING JURISDICTION]",
   paymentLinks: {
-    dressMe: "",
-    buildMyLook: "",
-    buildMyFits: "",
-    closetReset: "",
+    dressMe: "https://buy.stripe.com/eVq28k95f5si2xee0z7wA00",
+    buildMyLook: "https://buy.stripe.com/00w9AM81b2g6b3K8Gf7wA01",
+    buildMyFits: "https://buy.stripe.com/bJe14g81bg6Wfk0f4D7wA02",
+    closetReset: "https://buy.stripe.com/7sYaEQdlv2g61ta6y77wA03",
   },
 } as const;
 
