@@ -18,9 +18,9 @@ export const fitCards: FitCard[] = [
     image: "/fit-cards/wfh-comfort.png",
     width: 1122,
     height: 1402,
-    garments: ["Black COOFANDY V-neck tee", "Gray textured Banana Republic shorts", "White On sneakers"],
+    garments: ["Black COOFANDY V-neck tee", "Gray textured Banana Republic shorts", "White-and-gray Nike Dunks", "Silver-tone wedding band", "Stainless-steel Rolex Sea-Dweller"],
     stylingNotes: ["Wear the tee untucked.", "For a cooler room, swap the shorts for gray COOFANDY joggers."],
-    imageDescription: "MIA Fit Card showing a man in a black V-neck T-shirt, gray textured shorts, and white sneakers, with front, back, and garment-detail views.",
+    imageDescription: "MIA Fit Card showing a man in a black V-neck T-shirt, gray textured shorts, and white-and-gray Nike Dunks, with front, back, garment-detail, styling-note, and accessory views.",
   },
   {
     id: "smart-casual-city",
