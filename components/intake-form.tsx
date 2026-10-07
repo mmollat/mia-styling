@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowUpRight } from "@/components/arrow-up-right";
 import { MAX_FILES, services, type ServiceType } from "@/lib/intake";
 
 type FieldErrors = Record<string, string[]>;
@@ -93,7 +94,7 @@ export function IntakeForm({ serviceType }: { serviceType: ServiceType }) {
       {error("wardrobePhotos") && <p className="form-error">{error("wardrobePhotos")}</p>}
     </section>}
 
-    <div className="submit-row"><div><p className="micro-label">SELECTED SERVICE</p><strong>{service.name} — ${service.price}</strong></div><button className="button button-dark" type="submit" disabled={submitting}>{submitting ? "SUBMITTING…" : "SUBMIT INTAKE"}<span>↗</span></button></div>
+    <div className="submit-row"><div><p className="micro-label">SELECTED SERVICE</p><strong>{service.name} — ${service.price}</strong></div><button className="button button-dark" type="submit" disabled={submitting}>{submitting ? "SUBMITTING…" : "SUBMIT INTAKE"}<ArrowUpRight /></button></div>
     {message && <p className="form-message" role="alert">{message}</p>}
   </form>;
 }

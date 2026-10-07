@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { ArrowUpRight } from "@/components/arrow-up-right";
+import { FitCardGallery } from "@/components/fit-card-gallery";
 import { Header } from "@/components/header";
 import { SiteFooter } from "@/components/site-footer";
 import { serviceHref, siteConfig, type ServiceKey } from "@/lib/site-config";
@@ -39,10 +41,11 @@ export default function HomePage() {
           <div className="hero-copy">
             <p className="eyebrow light">MIA | Men&apos;s Style</p>
             <p className="hero-kicker">Personal styling, made simple.</p>
-            <h1>Your personal stylist.<br />Your closet. Your style—<em>put together.</em></h1>
+            <h1><span>Your personal stylist.</span><span>Your closet. Your style—</span><em>put together.</em></h1>
             <p className="hero-support">Tell Mia where you&apos;re going and choose whether to style what you already own or shop a completely new look built around your size, preferences, occasion, and budget.</p>
             <div className="button-row">
-              <a href="#services" className="button button-light">Get Styled <span aria-hidden="true">↗</span></a>
+              <a href="#services" className="button button-light">Get Styled <ArrowUpRight /></a>
+              <a href="#fit-cards" className="button button-ghost">See Fit Cards</a>
               <a href="#how-it-works" className="button button-ghost">See How It Works</a>
             </div>
           </div>
@@ -78,11 +81,13 @@ export default function HomePage() {
         </div>
       </section>
 
+      <FitCardGallery />
+
       <section id="services" className="services section-pad">
         <div className="container">
           <div className="section-heading split">
             <div>
-              <p className="section-index">03 — Services</p>
+              <p className="section-index">04 — Services</p>
               <h2>Choose the level of<br />styling you need.</h2>
             </div>
             <p>Style the clothes you own, shop a new head-to-toe look, or refresh your wardrobe. Every service is personal. No subscription.</p>
@@ -101,42 +106,12 @@ export default function HomePage() {
                   {service.features.map((feature) => <li key={feature}>{feature}</li>)}
                 </ul>
                 <p className="delivery">{service.delivery}</p>
-                <a href={serviceHref(service.key)} className={`button ${service.note ? "button-light" : "button-outline"}`}>
-                  Choose {service.name} <span aria-hidden="true">↗</span>
+                <a href={serviceHref(service.key)} className={`button ${service.note ? "button-light" : "button-outline"}`} aria-label={`Choose ${service.name}`}>
+                  Choose Service <ArrowUpRight />
                 </a>
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="fit-section section-pad">
-        <div className="container fit-grid">
-          <div className="fit-copy">
-            <p className="section-index">04 — What you receive</p>
-            <h2>Your look,<br /><em>clearly laid out.</em></h2>
-            <p>Your MIA Fit Card lays out a complete look—whether styled from your wardrobe or shopped from scratch—with clear guidance and thoughtful alternatives.</p>
-            <div className="fit-stat"><strong>1</strong><span>clear, complete<br />styling plan</span></div>
-          </div>
-          <article className="fit-card">
-            <header><div><span>MIA</span> FIT</div><p>FIT—0001</p></header>
-            <div className="fit-card-body">
-              <p className="micro-label">THE FIT</p>
-              <ol className="outfit-list">
-                <li><span>01</span> Black quarter-zip</li>
-                <li><span>02</span> White tapered trousers</li>
-                <li><span>03</span> Toffee leather sneakers</li>
-                <li><span>04</span> Rose-gold watch</li>
-                <li><span>05</span> Black belt</li>
-              </ol>
-              <div className="notes-grid">
-                <div><p className="micro-label">MIA&apos;S NOTES</p><p>The clean contrast sharpens the silhouette while warm leather keeps the look relaxed and considered.</p></div>
-                <div><p className="micro-label">SWAP IT</p><p>Trade the quarter-zip for your charcoal knit polo for a softer, more casual finish.</p></div>
-              </div>
-              <div className="missing-piece"><p className="micro-label">MISSING PIECE</p><p>No purchase needed—this fit works with what you own.</p></div>
-            </div>
-            <footer>PERSONAL STYLING, MADE SIMPLE. <span>MIA / 01</span></footer>
-          </article>
         </div>
       </section>
 
@@ -163,7 +138,7 @@ export default function HomePage() {
           <div className="contact-cta">
             <p>Send Mia a message on Instagram. She&apos;ll help you figure out which styling service is right for you.</p>
             <a className="button button-light" href={siteConfig.instagramUrl} target="_blank" rel="noreferrer">
-              Message Mia on Instagram <span aria-hidden="true">↗</span>
+              Message Mia on Instagram <ArrowUpRight />
             </a>
           </div>
         </div>
