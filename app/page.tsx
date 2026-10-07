@@ -41,7 +41,7 @@ export default function HomePage() {
           <div className="hero-copy">
             <p className="eyebrow light">MIA | Men&apos;s Style</p>
             <p className="hero-kicker">Personal styling, made simple.</p>
-            <h1><span>Your personal stylist.</span><span>Your closet. Your style—</span><em>put together.</em></h1>
+            <h1><span>Your personal stylist.</span><span>Your closet. <span className="hero-style">Your style—</span></span><em>put together.</em></h1>
             <p className="hero-support">Tell Mia where you&apos;re going and choose whether to style what you already own or shop a completely new look built around your size, preferences, occasion, and budget.</p>
             <div className="button-row">
               <a href="#services" className="button button-light">Get Styled <ArrowUpRight /></a>

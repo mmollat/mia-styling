@@ -28,7 +28,6 @@ export function FitCardGallery() {
             <p className="section-index">03 — What you receive</p>
             <h2>Your look,<br /><em>clearly laid out.</em></h2>
             <p>Your MIA Fit Card lays out a complete look—whether styled from your wardrobe or shopped from scratch—with clear guidance and thoughtful alternatives.</p>
-            <p className="visualization-note">Fit Card imagery is an AI styling visualization. Garment details may vary; these examples are not customer photos.</p>
           </div>
           <button className="featured-fit-card" type="button" onClick={() => openCard(featuredFitCard)} aria-label={`Open ${featuredFitCard.title} Fit Card at full resolution`}>
             <Image src={featuredFitCard.image} alt={featuredFitCard.imageDescription} width={featuredFitCard.width} height={featuredFitCard.height} sizes="(max-width: 900px) calc(100vw - 32px), 56vw" />
@@ -80,7 +79,6 @@ export function FitCardGallery() {
             <aside>
               <div><p className="micro-label">Garments</p><ul>{activeCard.garments.map((garment) => <li key={garment}>{garment}</li>)}</ul></div>
               <div><p className="micro-label">Styling notes</p><ul>{activeCard.stylingNotes.map((note) => <li key={note}>{note}</li>)}</ul></div>
-              <p className="visualization-note">AI styling visualization. Garment details may vary. Not a customer photo or result.</p>
             </aside>
           </div>
           <div className="zoom-controls" aria-label="Image zoom controls">
